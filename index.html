@@ -1,5 +1,3 @@
-<!-- Este es un cambio de prueba -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,6 +21,103 @@
             align-items: center;
             position: relative;
             padding: 20px;
+        }
+
+        /* Pantalla de bienvenida */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 50%, #00d2ff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            animation: fadeOut 1s ease-out 3s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: white;
+            animation: welcomeZoom 2s ease-out;
+        }
+
+        @keyframes welcomeZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .welcome-title {
+            font-size: clamp(2.5em, 8vw, 4em);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                         0 0 40px rgba(0, 210, 255, 0.5);
+            animation: glow-text 2s ease-in-out infinite;
+        }
+
+        @keyframes glow-text {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                             0 0 40px rgba(0, 210, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+                             0 0 60px rgba(0, 210, 255, 0.8);
+            }
+        }
+
+        .welcome-subtitle {
+            font-size: clamp(1.5em, 4vw, 2.5em);
+            color: #ffe0f0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .welcome-sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .welcome-sparkle {
+            position: absolute;
+            color: white;
+            font-size: 30px;
+            animation: sparkle-pop 2s ease-out infinite;
+        }
+
+        @keyframes sparkle-pop {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
         }
 
         /* Burbujas flotantes de fondo */
@@ -69,6 +164,104 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            margin-top: 15vh;
+        }
+
+        /* Partículas de fondo futuristas */
+        .tech-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(0, 210, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
+            animation: float-particles linear infinite;
+        }
+
+        @keyframes float-particles {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Líneas de conexión futuristas */
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.5), transparent);
+            animation: scan-line 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scan-line {
+            0% {
+                width: 0;
+                left: 0;
+            }
+            50% {
+                width: 100%;
+                left: 0;
+            }
+            100% {
+                width: 0;
+                left: 100%;
+            }
+        }
+
+        /* Hexágonos flotantes */
+        .hexagon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            animation: hex-float 6s ease-in-out infinite;
+        }
+
+        @keyframes hex-float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-100vh) rotate(180deg);
+            }
+        }
+
+        /* Círculos concéntricos pulsantes */
+        .pulse-ring {
+            position: absolute;
+            border: 2px solid rgba(0, 210, 255, 0.4);
+            border-radius: 50%;
+            animation: pulse-expand 3s ease-out infinite;
+        }
+
+        @keyframes pulse-expand {
+            0% {
+                width: 50px;
+                height: 50px;
+                opacity: 1;
+            }
+            100% {
+                width: 400px;
+                height: 400px;
+                opacity: 0;
+            }
         }
 
         /* Estilos del sobre/carta */
@@ -181,14 +374,15 @@
         /* Contenido principal */
         .content {
             opacity: 0;
-            transform: scale(0.8);
+            transform: scale(0.8) translateY(60px);
             pointer-events: none;
-            transition: all 1s ease;
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-top: -40px;
         }
 
         .content.show {
             opacity: 1;
-            transform: scale(1);
+            transform: scale(1) translateY(0);
             pointer-events: auto;
         }
 
@@ -200,8 +394,19 @@
             border-radius: 50%;
             padding: 8px;
             background: linear-gradient(45deg, #00d2ff, #3a7bd5, #00d2ff);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: glow 3s ease-in-out infinite, rotate 20s linear infinite;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                        0 0 40px rgba(0, 210, 255, 0.5),
+                        inset 0 0 20px rgba(0, 210, 255, 0.3);
+            animation: glow 3s ease-in-out infinite, rotate 20s linear infinite, float-photo 4s ease-in-out infinite;
+        }
+
+        @keyframes float-photo {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         @keyframes glow {
@@ -273,13 +478,50 @@
 
         .message {
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
             border-radius: 25px;
             padding: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+                        0 0 40px rgba(0, 210, 255, 0.2),
+                        inset 0 0 30px rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
+            animation: float-message 5s ease-in-out infinite;
+        }
+
+        @keyframes float-message {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .message::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent, rgba(0, 210, 255, 0.3), transparent);
+            border-radius: 25px;
+            z-index: -1;
+            animation: border-glow 3s linear infinite;
+        }
+
+        @keyframes border-glow {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
 
         .message::before {
@@ -533,71 +775,19 @@
             .click-text {
                 font-size: 1em;
             }
-
-            .youtube-player {
-                width: 250px !important;
-                height: 140px !important;
-                bottom: 10px !important;
-                right: 10px !important;
-            }
-        }
-
-        /* Reproductor de YouTube */
-        .youtube-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 320px;
-            height: 180px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            z-index: 9999;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: all 0.8s ease;
-            pointer-events: none;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .youtube-player.show {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        .youtube-player iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .music-icon {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            font-size: 50px;
-            animation: musicPulse 2s ease-in-out infinite;
-            z-index: 9998;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .music-icon.show {
-            opacity: 1;
-        }
-
-        @keyframes musicPulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
         }
     </style>
 </head>
 <body>
+    <!-- Pantalla de bienvenida -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-sparkles" id="welcomeSparkles"></div>
+        <div class="welcome-content">
+            <div class="welcome-title">Bienvenido</div>
+            <div class="welcome-subtitle">a la página de Yosara 💕</div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="envelope-section">
             <div class="envelope-wrapper" id="envelopeWrapper">
@@ -641,7 +831,7 @@
                     enfermera extraordinaria porque ya eres una persona extraordinaria. 💙🩺
                 </p>
                 <p class="text">
-                    Gracias por ser quien eres, por tu amor, tu paciencia y 
+                    Gracias por ser quien eres, por tu amistad, tu paciencia y por 
                     llenar mi vida de momentos inolvidables. Sigue brillando y persiguiendo 
                     tus sueños, yo siempre estaré aquí apoyándote.
                 </p>
@@ -652,32 +842,52 @@
         </div>
     </div>
 
-    <!-- Reproductor de YouTube -->
-    <div class="youtube-player" id="youtubePlayer">
-        <iframe 
-            id="youtubeIframe"
-            src="https://youtu.be/q07Gd6Q-7dY" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
-    <div class="music-icon" id="musicIcon">🎵</div>
-
     <script>
         const envelopeWrapper = document.getElementById('envelopeWrapper');
         const content = document.getElementById('content');
-        const youtubePlayer = document.getElementById('youtubePlayer');
-        const musicIcon = document.getElementById('musicIcon');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const welcomeSparkles = document.getElementById('welcomeSparkles');
+
+        // Crear destellos en la pantalla de bienvenida
+        function createWelcomeSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('welcome-sparkle');
+            sparkle.innerHTML = ['✨', '⭐', '💫', '💖', '💕'][Math.floor(Math.random() * 5)];
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            welcomeSparkles.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Generar destellos de bienvenida
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createWelcomeSparkle, i * 150);
+        }
+
+        const welcomeInterval = setInterval(createWelcomeSparkle, 200);
+
+        // Detener destellos después de 3 segundos
+        setTimeout(() => {
+            clearInterval(welcomeInterval);
+        }, 3000);
+
+        // Crear elemento de audio
+        const audio = new Audio('https://cdn.pixabay.com/audio/2022/03/10/audio_4a452ff7f0.mp3');
+        audio.loop = true;
+        audio.volume = 0.5;
 
         // Abrir carta al hacer clic
         envelopeWrapper.addEventListener('click', function() {
             envelopeWrapper.classList.add('opened');
             
-            // Mostrar reproductor de YouTube con animación
-            setTimeout(() => {
-                youtubePlayer.classList.add('show');
-                musicIcon.classList.add('show');
-            }, 1000);
+            // Reproducir música
+            audio.play().catch(error => {
+                console.log('Error al reproducir audio:', error);
+            });
             
             // Crear explosión masiva de corazones, rosas y símbolos médicos
             for (let i = 0; i < 60; i++) {
@@ -818,20 +1028,82 @@
             }
         }
 
+        // Crear partículas tecnológicas
+        function createTechParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('tech-particle');
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 7000);
+        }
+
+        // Crear hexágonos flotantes
+        function createHexagon() {
+            const hex = document.createElement('div');
+            hex.classList.add('hexagon');
+            hex.style.left = Math.random() * 100 + 'vw';
+            hex.style.bottom = '-50px';
+            hex.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(hex);
+
+            setTimeout(() => {
+                hex.remove();
+            }, 6000);
+        }
+
+        // Crear líneas de escaneo
+        function createScanLine() {
+            const line = document.createElement('div');
+            line.classList.add('connection-line');
+            line.style.top = Math.random() * 100 + 'vh';
+            line.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(line);
+
+            setTimeout(() => {
+                line.remove();
+            }, 3000);
+        }
+
+        // Crear anillos pulsantes
+        function createPulseRing() {
+            const ring = document.createElement('div');
+            ring.classList.add('pulse-ring');
+            ring.style.left = Math.random() * 80 + 10 + 'vw';
+            ring.style.top = Math.random() * 80 + 10 + 'vh';
+            ring.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(ring);
+
+            setTimeout(() => {
+                ring.remove();
+            }, 3000);
+        }
+
         // Generar efectos continuamente
         setInterval(createHeart, 300);
         setInterval(createSparkle, 400);
         setInterval(createBubble, 800);
         setInterval(createMedicalIcon, 3000);
+        setInterval(createTechParticle, 200);
+        setInterval(createHexagon, 2000);
+        setInterval(createScanLine, 4000);
+        setInterval(createPulseRing, 3000);
 
         // Crear efectos iniciales
         for (let i = 0; i < 15; i++) {
             setTimeout(createHeart, i * 200);
             setTimeout(createBubble, i * 300);
+            setTimeout(createTechParticle, i * 100);
         }
 
         for (let i = 0; i < 5; i++) {
             setTimeout(createMedicalIcon, i * 2000);
+            setTimeout(createHexagon, i * 1000);
+            setTimeout(createPulseRing, i * 800);
         }
 
         // Esperar a que el contenido se muestre para crear partículas
